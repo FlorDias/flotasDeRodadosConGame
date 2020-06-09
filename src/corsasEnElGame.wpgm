@@ -1,7 +1,35 @@
 import wollok.game.*
+import otrosRodados.*
+import dependencias.*
+import trafic.*
+import colores.*
 
 program corsasEnElGame {
-	// hacer las inicializaciones necesarias 
+	
+	const corsaGame = new ChevroletCorsa(color = "Rojo", position = game.origin(), image = deColorRojo.image())
+	
+	game.title ("Corsas en el game")
+	
+	game.height (10)
+	
+	game.width (10)
+	
+	game.addVisual(corsaGame)	
+	
+	keyboard.up().onPressDo{corsaGame.moverHaciaArriba()}
+	
+	keyboard.down().onPressDo{corsaGame.moverHaciaAbajo()}
+	
+	keyboard.right().onPressDo{corsaGame.haciaLaDerecha()}
+	
+	keyboard.left().onPressDo{corsaGame.haciaLaIzquierda()}
+	
+	keyboard.a().onPressDo{corsaGame.cambiarColorAzul()}
+	
+	keyboard.v().onPressDo{corsaGame.cambiarColorVerde()}
+	
+	keyboard.r().onPressDo{corsaGame.cambiarColorRojo()}
 	
 	game.start()
+	
 }

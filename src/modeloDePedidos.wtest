@@ -1,0 +1,63 @@
+import dependencias.*
+import otrosRodados.*
+import pedidos.*
+import colores.*
+
+test " Test modelo de pedidos " {
+	
+	// Escenario
+	 
+	const cachito = new ChevroletCorsa()
+	const pedido1 = new Pedidos()
+ 
+	cachito.color("Rojo")
+	pedido1.distanciaARecorrer(960)
+	pedido1.tiempoMaximo(8)
+	pedido1.cantidadDePasajeros(4)
+	pedido1.agregarColorIncompatible("Negro")
+	pedido1.agregarColorIncompatible("Azul")
+	
+	// Verificaciones
+	
+	assert.equals(120, pedido1.velocidadRequerida())
+	assert.notThat(pedido1.colorIncompatible("Rojo"))
+	assert.that(pedido1.puedeSatisfacerUnPedido(cachito))
+}
+
+test "Test pedido 2" {
+	
+	const cachito = new ChevroletCorsa()
+	const pedido1 = new Pedidos()
+ 
+	cachito.color("Rojo")
+	pedido1.distanciaARecorrer(960)
+	pedido1.tiempoMaximo(8)
+	pedido1.cantidadDePasajeros(6)
+	pedido1.agregarColorIncompatible("Rojo")
+	
+	// Verificaciones
+	
+	assert.that(pedido1.colorIncompatible("Rojo"))
+	assert.notThat(pedido1.puedeSatisfacerUnPedido(cachito))
+
+}
+
+test "Test pedido 3" {
+	
+	const cachito = new ChevroletCorsa()
+	const pedido1 = new Pedidos()
+ 
+	cachito.color("Rojo")
+	pedido1.distanciaARecorrer(960)
+	pedido1.tiempoMaximo(6)
+	pedido1.cantidadDePasajeros(6)
+	pedido1.agregarColorIncompatible("Rojo")
+	
+	// Verificaciones
+	
+	assert.equals(160, pedido1.velocidadRequerida())
+	assert.that(pedido1.colorIncompatible("Rojo"))
+	assert.notThat(pedido1.puedeSatisfacerUnPedido(cachito))
+
+}
+
