@@ -39,13 +39,15 @@ class Dependencias {
 	
 	method sacarPedido (pedido) { pedidos.remove (pedido)}
 	
-	method totalDePasajerosPedidos() { pedidos.sum ({ p => p.cantidadDePasajeros()})}
+	method totalDePasajerosPedidos() { return pedidos.sum ({ p => p.cantidadDePasajeros()})}
 
-	method noPuedeSerSatisfecho () { pedidos.filter ({auto => not auto.puedeSatisfacerUnPedido(auto)})}
+	method noPuedeSerSatisfecho () { return pedidos.filter ({pedido => not self.pedidoSatisfecho(pedido)})}
+
+	method pedidoSatisfecho(unPedido) { return flotaRodados.any ({ auto => unPedido.puedeSatisfacerUnpedido(auto)})}
+		
+	method todosComoColorIncompatible(color) { return pedidos.all ({pedido => pedido.colorIncompatible(color)})}
 	
-	method todosComoColorIncompatible(color) { pedidos.all ({pedido => pedido.colorImcompatible(color)})}
-	
-	method relajarTodosLosPedidos() { pedidos.map ({pedido => pedido.relajar()})}	
+	method relajarTodosLosPedidos() { return pedidos.forEach ({pedido => pedido.relajar()})}	
 	
 } 
 

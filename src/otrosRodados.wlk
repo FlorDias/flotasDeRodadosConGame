@@ -18,9 +18,9 @@ class ChevroletCorsa {
 
 	method pasoPor (posicion) { return posiciones.contains(posicion)}
 	
-	method pasoPorFila (numero) { return posiciones.map({ n => numero.x()}).asSet()} 
+	method pasoPorFila (numero) { return posiciones.any ({ posicion => posicion.x() == numero}).asSet()} 
 	
-	method recorrioFilas(lista_de_numeros) { return posiciones.all ({ self.pasoPorFila(lista_de_numeros)})}
+	method recorrioFilas(lista_de_numeros) { return lista_de_numeros.all ({ numero => self.pasoPorFila(numero)})}
 	
 	method moverHaciaArriba() { position = position.up (1) }
 	
